@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-game-session
+      author: anastasia
+      changes:
+        - createTable:
+            tableName: game_session
+            columns:
+              - column:
+                  name: id
+                  type: serial
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: status
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: current_player_index
+                  type: int
+                  defaultValue: "0"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: max_points
+                  type: int
+                  defaultValue: "30"
+                  constraints:
+                    nullable: false
