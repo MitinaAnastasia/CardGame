@@ -1,0 +1,35 @@
+version: '3.8'
+
+volumes:
+  postgres_data:
+
+services:
+  postgres:
+    image: postgres
+    container_name: cardgame_db
+    environment:
+      POSTGRES_DB: cardgame
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: NarutoAndSasukeL0ve
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+
+  app:
+    build: .
+    container_name: cardgame_app
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/cardgame
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: NarutoAndSasukeL0ve
+      SPRING_LIQUIBASE_ENABLED: "true"
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./build/libs:/app/build/libs

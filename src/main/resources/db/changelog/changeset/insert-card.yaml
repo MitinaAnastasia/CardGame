@@ -1,0 +1,95 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-card
+      author: anastasia
+      changes:
+        - insert:
+            tableName: card
+            columns:
+              - column:
+                  name: name
+                  value: "The Magician"
+              - column:
+                  name: type
+                  value: "POINTS"
+              - column:
+                  name: value
+                  value: "1"
+
+        - insert:
+            tableName: card
+            columns:
+              - column:
+                  name: name
+                  value: "The Lovers"
+              - column:
+                  name: type
+                  value: "POINTS"
+              - column:
+                  name: value
+                  value: "6"
+
+        - insert:
+            tableName: card
+            columns:
+              - column:
+                  name: name
+                  value: "The Wheel of Fortune"
+              - column:
+                  name: type
+                  value: "POINTS"
+              - column:
+                  name: value
+                  value: "10"
+
+        - insert:
+            tableName: card
+            columns:
+              - column:
+                  name: name
+                  value: "Block"
+              - column:
+                  name: type
+                  value: "ACTION"
+              - column:
+                  name: value
+                  value: "1"
+
+        - insert:
+            tableName: card
+            columns:
+              - column:
+                  name: name
+                  value: "Steal 3"
+              - column:
+                  name: type
+                  value: "ACTION"
+              - column:
+                  name: value
+                  value: "3"
+
+        - insert:
+            tableName: card
+            columns:
+              - column:
+                  name: name
+                  value: "Steal 5"
+              - column:
+                  name: type
+                  value: "ACTION"
+              - column:
+                  name: value
+                  value: "5"
+
+        - insert:
+            tableName: card
+            columns:
+              - column:
+                  name: name
+                  value: "DoubleDown"
+              - column:
+                  name: type
+                  value: "ACTION"
+              - column:
+                  name: value
+                  value: "2"

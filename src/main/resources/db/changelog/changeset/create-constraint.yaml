@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-constraint
+      author: anastasia
+      changes:
+        - addUniqueConstraint:
+            tableName: game_player
+            constraintName: uk_player_user_game
+            columnNames: user_id, game_session_id
+        - sql:
+            sql: "ALTER TABLE game_session ADD CONSTRAINT ck_game_status CHECK (status IN ('WAITING_FOR_PLAYERS', 'IN_PROGRESS', 'FINISHED'))"
+        - sql:
+            sql: "ALTER TABLE card ADD CONSTRAINT ck_card_type CHECK (type IN ('POINTS', 'ACTION'))"

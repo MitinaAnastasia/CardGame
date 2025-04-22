@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-game-card
+      author: anastasia
+      changes:
+        - createTable:
+            tableName: game_card
+            columns:
+              - column:
+                  name: id
+                  type: serial
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: card_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    references: card(id)
+                    foreignKeyName: fk_game_player_card
+              - column:
+                  name: game_session_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    references: game_session(id)
+                    foreignKeyName: fk_game_player_session
+              - column:
+                  name: position_in_deck
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_used
+                  type: boolean
+                  defaultValue: "false"
+                  constraints:
+                    nullable: false
