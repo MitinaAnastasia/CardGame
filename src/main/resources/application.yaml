@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: 'jdbc:postgresql://localhost:5432/cardgame'
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: NarutoAndSasukeL0ve
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+
+jwt:
+  secret: fd846776698cd23d72cef6f04cc42685788df218e9c87624f9136a91ffd64752
+  expiration: 86400000

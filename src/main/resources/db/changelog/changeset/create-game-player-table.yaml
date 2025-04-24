@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-game-player
+      author: anastasia
+      changes:
+        - createTable:
+            tableName: game_player
+            columns:
+              - column:
+                  name: id
+                  type: serial
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    references: user(id)
+                    foreignKeyName: fk_player_user
+              - column:
+                  name: game_session_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    references: game_session(id)
+                    foreignKeyName: fk_player_game
+              - column:
+                  name: points
+                  type: int
+                  defaultValue: "0"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_blocked
+                  type: boolean
+                  defaultValue: "false"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: join_order
+                  type: int
+                  constraints:
+                    nullable: false
