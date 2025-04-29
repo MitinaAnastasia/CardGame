@@ -10,7 +10,7 @@ import jakarta.persistence.ManyToOne
 import jakarta.persistence.JoinColumn
 
 @Entity
-@Table(name = "game_player")
+@Table(name = "game_player", schema = "public")
 data class GamePlayer (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

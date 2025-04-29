@@ -3,6 +3,9 @@ package org.example.cardgame.config
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.security.Keys
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.security.core.userdetails.User
+import org.springframework.security.core.Authentication
 import org.springframework.stereotype.Component
 import java.nio.charset.StandardCharsets
 import java.util.*
@@ -28,5 +31,20 @@ class JwtTokenProvider (
             .parseClaimsJws(token)
             .body
             .subject
+    }
+
+    fun getAuthentication(token: String): Authentication {
+        val claims = Jwts.parserBuilder()
+            .setSigningKey(Keys.hmacShaKeyFor(secret.toByteArray(StandardCharsets.UTF_8)))
+            .build()
+            .parseClaimsJws(token)
+            .body
+
+        val principal = User.withUsername(claims.subject)
+            .password("")
+            .authorities(claims["roles"].toString())
+            .build()
+
+        return UsernamePasswordAuthenticationToken(principal, token, principal.authorities)
     }
 }

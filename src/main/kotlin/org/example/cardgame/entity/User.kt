@@ -10,7 +10,7 @@ import jakarta.persistence.OneToMany
 import jakarta.persistence.CascadeType
 
 @Entity
-@Table(name = "user")
+@Table(name = "user", schema = "public")
 data class User (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

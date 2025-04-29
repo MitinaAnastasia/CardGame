@@ -3,7 +3,7 @@ package org.example.cardgame.entity
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "card")
+@Table(name = "card", schema = "public")
 data class Card (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

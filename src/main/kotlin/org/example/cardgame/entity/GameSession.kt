@@ -12,7 +12,7 @@ import jakarta.persistence.Enumerated
 import jakarta.persistence.EnumType
 
 @Entity
-@Table(name = "game_session")
+@Table(name = "game_session", schema = "public")
 data class GameSession (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

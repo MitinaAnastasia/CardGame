@@ -13,9 +13,9 @@ import org.springframework.stereotype.Service
 
 @Service
 class AuthService (
+    private val jwtTokenProvider: JwtTokenProvider,
     private val userRepository: UserRepository,
-    private val passwordEncoder: PasswordEncoder,
-    private val jwtTokenProvider: JwtTokenProvider
+    private val passwordEncoder: PasswordEncoder
 ) {
     fun registerUser(request: AuthRequest): AuthResponse {
 
@@ -58,7 +58,8 @@ class AuthService (
     }
 
     fun getAuthenticatedUser(token: String): User {
-        val login = jwtTokenProvider.getUsernameFromToken(token)
+        val cleanToken = token.removePrefix("Bearer ").trim()
+        val login = jwtTokenProvider.getUsernameFromToken(cleanToken)
         return userRepository.findByLogin(login)
             ?: throw UserNotFoundException("User with login $login not found")
     }
